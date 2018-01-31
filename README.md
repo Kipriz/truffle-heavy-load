@@ -1,5 +1,9 @@
 Demo project for testing thousands of transactions for smart contracts.
 
+It needs:
+* Truffle 4.0.3
+* Ganache-cli v6.1.0-beta.0 (see [this release notes](https://github.com/trufflesuite/ganache-cli/releases/tag/v6.1.0-beta.0))
+
 The project contains a very dummy lottery (see `contracts/Lottery.sol`) and a bunch of tests.
 
 How to run tests:
