@@ -8,7 +8,7 @@
 *     truffle console
 *
 *  3. Run this test:
-*     test test/Test_02_buy_50_tickets_automining.es6
+*     test test/Test_02_buy_500_tickets_automining.es6
 *
 *  The test will take about 59 seconds (468931ms for buying tickets)
 * */
@@ -26,7 +26,9 @@ chai.use(require('chai-bignumber')(BigNumber));
 
 const Lottery = artifacts.require("../Lottery.sol");
 
-contract("Buy 5 tickets: ", accounts => {
+const numberOfTickets = 500;
+
+contract(`Buy ${numberOfTickets} tickets with automining: `, accounts => {
 
     let house = accounts[9]; // see 2_lottery_migration.js
     let price = web3.toWei(10, "finney"); // see 2_lottery_migration.js
@@ -43,22 +45,22 @@ contract("Buy 5 tickets: ", accounts => {
         expect(await lottery.price()).to.be.bignumber.equal(price);
     });
 
-    it("buy 5 tickets", async () => {
-        let n = 5000;
+    it(`buy ${numberOfTickets} tickets`, async () => {
         const lottery = await Lottery.deployed();
 
-        for (let i = 1; i < 1 + n; i++) {
+        for (let i = 1; i < 1 + numberOfTickets; i++) {
             let account = accounts[i % 100];
             console.log(i);
             lottery.takePart.sendTransaction({from: account, value: price});
-            // await utils.assertEvent(lottery, {
-            //     event: "BuyTicket",
-            //     args: {participant: account}
-            // });
+            /* do not wait for events, because it makes test very slow (330 seconds instead 47) */
+            /*await utils.assertEvent(lottery, {
+                event: "BuyTicket",
+                args: {participant: account}
+            });*/
         }
 
-        expect(await lottery.jackpot()).to.be.bignumber.equal(n * price);
-    });
+        expect(await lottery.jackpot()).to.be.bignumber.equal(numberOfTickets * price);
+    }).timeout(30000000);
 
     it("payouts", async () => {
         const lottery = await Lottery.deployed();

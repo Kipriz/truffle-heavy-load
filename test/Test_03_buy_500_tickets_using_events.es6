@@ -1,14 +1,14 @@
 "use strict";
 
 /* Run this test in `truffle console`
-*  1. run ganache with automining:
+*  1. run ganache with fixed block time:
 *     ganache-cli -m "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat" -u 0 -u 1 --gasLimit 0x2FEFD800000 -a 100 --defaultBalanceEther 10000 --blocktime 5 > ganache.log
 *
 *  2. Run truffle console in another terminal:
 *     truffle console
 *
 *  3. Run this test:
-*     test test/Test_04_buy_500_tickets_using_events.es6
+*     test test/Test_03_buy_500_tickets_using_events.es6
 *
 *  The test will take about 59 seconds (468931ms for buying tickets)
 * */
@@ -26,7 +26,7 @@ chai.use(require('chai-bignumber')(BigNumber));
 
 const Lottery = artifacts.require("../Lottery.sol");
 
-const numberOfTickets = 5000;
+const numberOfTickets = 500;
 const ticketsPerBlock = 90;
 
 contract(`Buy ${numberOfTickets} tickets with events and block of 5 seconds: `, accounts => {
@@ -84,7 +84,7 @@ contract(`Buy ${numberOfTickets} tickets with events and block of 5 seconds: `, 
                 filterLatest.stopWatching();
                 setTimeout(() => {
                     done();
-                }, 5000);
+                }, 5000); // just to be sure that everything has been processed
             }
         });
 
