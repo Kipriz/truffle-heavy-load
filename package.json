@@ -1,0 +1,36 @@
+{
+  "name": "truffle-heavy-load",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kipriz/truffle-heavy-load.git"
+  },
+  "keywords": [
+    "truffle",
+    "smartcontract",
+    "solidity",
+    "testing"
+  ],
+  "author": "Andrey Volkov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kipriz/truffle-heavy-load/issues"
+  },
+  "homepage": "https://github.com/Kipriz/truffle-heavy-load#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-bignumber": "^2.0.2",
+    "lodash": "^4.17.4",
+    "bignumber.js": "^4.0.2"
+  }
+}
